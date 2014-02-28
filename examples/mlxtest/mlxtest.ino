@@ -6,7 +6,7 @@
   ----> https://www.adafruit.com/products/1748
   ----> https://www.adafruit.com/products/1749
 
-  These sensorss use I2C to communicate, 2 pins are required to  
+  These sensors use I2C to communicate, 2 pins are required to  
   interface
   Adafruit invests time and resources providing this open source code, 
   please support Adafruit and open-source hardware by purchasing 

@@ -6,7 +6,7 @@
   ----> https://www.adafruit.com/products/1748
   ----> https://www.adafruit.com/products/1749
 
-  These sensorss use I2C to communicate, 2 pins are required to  
+  These sensors use I2C to communicate, 2 pins are required to  
   interface
   Adafruit invests time and resources providing this open source code, 
   please support Adafruit and open-source hardware by purchasing 
@@ -17,8 +17,6 @@
  ****************************************************/
 
 #include "Adafruit_MLX90614.h"
-#include <util/delay.h>
-
 
 Adafruit_MLX90614::Adafruit_MLX90614(uint8_t i2caddr) {
   _addr = i2caddr;
