@@ -12,7 +12,8 @@
   please support Adafruit and open-source hardware by purchasing 
   products from Adafruit!
 
-  Written by Limor Fried/Ladyada for Adafruied in any redistribution
+  Written by Limor Fried/Ladyada for Adafruit Industries.  
+  BSD license, all text above must be included in any redistribution
  ****************************************************/
 
 #include <Wire.h>
@@ -30,7 +31,7 @@ void setup() {
 
 void loop() {
   Serial.print("Ambient = "); Serial.print(mlx.readAmbientTempC()); 
-  Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempF()); Serial.println("*C");
+  Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempC()); Serial.println("*C");
   Serial.print("Ambient = "); Serial.print(mlx.readAmbientTempF()); 
   Serial.print("*F\tObject = "); Serial.print(mlx.readObjectTempF()); Serial.println("*F");
 
