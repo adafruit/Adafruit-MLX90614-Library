@@ -24,7 +24,11 @@ Adafruit_MLX90614::Adafruit_MLX90614(uint8_t i2caddr) {
 
 
 boolean Adafruit_MLX90614::begin(void) {
+#if defined(__AVR_ATtiny85__) || (__AVR_ATtiny2313__)  || (__AVR_ATtiny167__)
+ TinyWireM.begin();
+#else 
   Wire.begin();
+#endif
 
   /*
   for (uint8_t i=0; i<0x20; i++) {
@@ -70,6 +74,17 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
 uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   uint16_t ret;
 
+#if defined(__AVR_ATtiny85__) || (__AVR_ATtiny2313__)  || (__AVR_ATtiny167__)
+  TinyWireM.beginTransmission(_addr); // start transmission to device 
+  TinyWireM.write(a); // sends register address to read from
+  TinyWireM.endTransmission(false); // end transmission
+  
+  TinyWireM.requestFrom(_addr, (uint8_t)3);// send data n-bytes read
+  ret = TinyWireM.read(); // receive DATA
+  ret |= TinyWireM.read() << 8; // receive DATA
+
+  uint8_t pec = TinyWireM.read();
+#else 
   Wire.beginTransmission(_addr); // start transmission to device 
   Wire.write(a); // sends register address to read from
   Wire.endTransmission(false); // end transmission
@@ -79,6 +94,7 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   ret |= Wire.read() << 8; // receive DATA
 
   uint8_t pec = Wire.read();
+#endif
 
   return ret;
 }
