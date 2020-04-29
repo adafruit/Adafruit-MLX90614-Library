@@ -34,6 +34,16 @@ boolean Adafruit_MLX90614::begin(void) {
 
 //////////////////////////////////////////////////////
 
+uint16_t Adafruit_MLX90614::readEmmissivity(void)
+{
+  return read16(MLX90614_EMISS);
+}
+void  Adafruit_MLX90614::writeEmmissivity(uint16_t e)
+{
+  write16(MLX90614_EMISS, e);
+}
+
+
 double Adafruit_MLX90614::readObjectTempF(void) {
   return (readTemp(MLX90614_TOBJ1) * 9 / 5) + 32;
 }
@@ -72,6 +82,22 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   ret = Wire.read();                  // receive DATA
   ret |= Wire.read() << 8;            // receive DATA
 
+  uint8_t pec = Wire.read();
+
+  return ret;
+}
+
+
+void Adafruit_MLX90614::write16(uint8_t a, uint16_t v) {
+  uint16_t ret;
+
+  Wire.beginTransmission(_addr); // start transmission to device
+  Wire.write(a);                 // sends register address to read from
+  Wire.write(v>>8);
+  Wire.write(v&0xff);
+  Wire.endTransmission(false);   // end transmission
+
+  Wire.requestFrom(_addr, (size_t)1); // send data n-bytes read
   uint8_t pec = Wire.read();
 
   return ret;

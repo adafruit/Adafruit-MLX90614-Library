@@ -53,6 +53,9 @@ public:
   double readAmbientTempC(void);
   double readObjectTempF(void);
   double readAmbientTempF(void);
+  uint16_t readEmmissivity(void);
+  uint16_t writeEmmissivity(uint16_t e);
+
 
 private:
   float readTemp(uint8_t reg);
