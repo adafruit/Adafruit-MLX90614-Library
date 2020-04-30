@@ -53,10 +53,10 @@ public:
   double readAmbientTempC(void);
   double readObjectTempF(void);
   double readAmbientTempF(void);
-  uint16_t readEmmissivityReg(void);
-  void writeEmmissivityReg(uint16_t ereg);
-  double readEmmissivity(void);
-  void writeEmmissivity(double emissivity);
+  uint16_t readEmissivityReg(void);
+  void writeEmissivityReg(uint16_t ereg);
+  double readEmissivity(void);
+  void writeEmissivity(double emissivity);
 
 
 private:

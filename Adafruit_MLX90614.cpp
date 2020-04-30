@@ -36,27 +36,27 @@ boolean Adafruit_MLX90614::begin(void) {
 
 // Emissivity =  65535 x ε
 //
-uint16_t Adafruit_MLX90614::readEmmissivityReg(void)
+uint16_t Adafruit_MLX90614::readEmissivityReg(void)
 {
   return read16(MLX90614_EMISS);
 }
-void  Adafruit_MLX90614::writeEmmissivityReg(uint16_t ereg)
+void  Adafruit_MLX90614::writeEmissivityReg(uint16_t ereg)
 {
   write16(MLX90614_EMISS, 0);	// erase
   delay(10);
   write16(MLX90614_EMISS, ereg);
   delay(10);
 }
-double Adafruit_MLX90614::readEmmissivity(void)
+double Adafruit_MLX90614::readEmissivity(void)
 {
   uint16_t ereg =  read16(MLX90614_EMISS);
   return ((double) ereg) / 65535.0;
 }
-void  Adafruit_MLX90614::writeEmmissivity(double emissivity)
+void  Adafruit_MLX90614::writeEmissivity(double emissivity)
 {
   uint16_t ereg = int(0xffff * emissivity);
 
-  writeEmmissivityReg(ereg);
+  writeEmissivityReg(ereg);
 }
 
 
