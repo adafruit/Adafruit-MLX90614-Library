@@ -53,16 +53,17 @@ public:
   double readAmbientTempC(void);
   double readObjectTempF(void);
   double readAmbientTempF(void);
-  uint16_t readEmmissivity(void);
-  void writeEmmissivity(uint16_t e);
+  uint16_t readEmmissivityReg(void);
+  void writeEmmissivityReg(uint16_t ereg);
+  double readEmmissivity(void);
+  void writeEmmissivity(double emissivity);
 
-
-  uint16_t read16(uint8_t addr);
-  void write16(uint8_t addr, uint16_t data);
 
 private:
   float readTemp(uint8_t reg);
 
+  uint16_t read16(uint8_t addr);
+  void write16(uint8_t addr, uint16_t data);
   byte crc8(byte *addr, byte len);
   uint8_t _addr;
 };

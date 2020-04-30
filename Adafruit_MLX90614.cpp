@@ -34,16 +34,29 @@ boolean Adafruit_MLX90614::begin(void) {
 
 //////////////////////////////////////////////////////
 
-uint16_t Adafruit_MLX90614::readEmmissivity(void)
+// Emissivity =  65535 x ε
+//
+uint16_t Adafruit_MLX90614::readEmmissivityReg(void)
 {
   return read16(MLX90614_EMISS);
 }
-void  Adafruit_MLX90614::writeEmmissivity(uint16_t e)
+void  Adafruit_MLX90614::writeEmmissivityReg(uint16_t ereg)
 {
   write16(MLX90614_EMISS, 0);	// erase
   delay(10);
-  write16(MLX90614_EMISS, e);
+  write16(MLX90614_EMISS, ereg);
   delay(10);
+}
+double Adafruit_MLX90614::readEmmissivity(void)
+{
+  uint16_t ereg =  read16(MLX90614_EMISS);
+  return ((double) ereg) / 65535.0;
+}
+void  Adafruit_MLX90614::writeEmmissivity(double emissivity)
+{
+  uint16_t ereg = int(0xffff * emissivity);
+
+  writeEmmissivityReg(ereg);
 }
 
 
@@ -113,7 +126,7 @@ void Adafruit_MLX90614::write16(uint8_t a, uint16_t v) {
   uint8_t pec;
   uint8_t pecbuf[4];
 
-  pecbuf[0] = (_addr<<1);
+  pecbuf[0] = _addr<<1;
   pecbuf[1] = a;
   pecbuf[2] = v&0xff;
   pecbuf[3] = v>>8;
