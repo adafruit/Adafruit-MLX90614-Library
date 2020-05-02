@@ -26,9 +26,9 @@ Adafruit_MLX90614::Adafruit_MLX90614(uint8_t i2caddr) { _addr = i2caddr; }
 /**
  * @brief Begin the I2C connection
  *
- * @return boolean  Always returns true
+ * @return bool  Always returns true
  */
-boolean Adafruit_MLX90614::begin(void) {
+bool Adafruit_MLX90614::begin(void) {
   Wire.begin();
 
   /*
@@ -160,7 +160,6 @@ byte Adafruit_MLX90614::crc8(byte *addr, byte len)
 }
 
 void Adafruit_MLX90614::write16(uint8_t a, uint16_t v) {
-  uint16_t ret;
   uint8_t pec;
   uint8_t pecbuf[4];
 
@@ -176,6 +175,4 @@ void Adafruit_MLX90614::write16(uint8_t a, uint16_t v) {
   Wire.write(v >> 8);            // hi
   Wire.write(pec);               // pec
   Wire.endTransmission(true);    // end transmission
-
-  return ret;
 }
