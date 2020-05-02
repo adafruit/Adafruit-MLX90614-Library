@@ -14,11 +14,6 @@ Adafruit invests time and resources providing this open source code, please supp
 # Installation
 To install, use the Arduino Library Manager and search for "Adafruit-MLX90614-Library" and install the library.
 
-## Dependencies
- * [Adafruit BusIO](https://github.com/adafruit/Adafruit_BusIO)
- * [Adafruit Unified Sensor Driver](https://github.com/adafruit/Adafruit_Sensor)
- * [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library)
-
 # Contributing
 
 Contributions are welcome! Please read our [Code of Conduct](https://github.com/adafruit/Adafruit-MLX90614-Library/blob/master/CODE_OF_CONDUCT.md>)
