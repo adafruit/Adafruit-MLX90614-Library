@@ -1,7 +1,8 @@
 # Adafruit-MLX90614-Library [![Build Status](https://github.com/adafruit/Adafruit-MLX90614-Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit-MLX90614-Library/actions)[![Documentation](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](http://adafruit.github.io/Adafruit-MLX90614-Library/html/index.html)
 
 This is a library for the MLX90614 temperature sensor
-[<img src="https://cdn-shop.adafruit.com/970x728/1747-00.jpg" width="500px">](https://www.adafruit.com/products/1747 1748)
+<a href="https://www.adafruit.com/products/1747"><img src="https://cdn-shop.adafruit.com/970x728/1747-00.jpg" width="500px"></a>
+
 Designed and tested  to work with the MLX90614 sensors in the adafruit shop
  * https://www.adafruit.com/products/1747 3V version
  * https://www.adafruit.com/products/1748 5V version
