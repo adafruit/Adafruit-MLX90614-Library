@@ -1,3 +1,4 @@
+# Adafruit-MLX90614-Library [![Build Status](https://github.com/adafruit/Adafruit-MLX90614-Library/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit-MLX90614-Library/actions)
 This is a library for the MLX90614 temperature sensor
 
   Designed specifically to work with the MLX90614 sensors in the
