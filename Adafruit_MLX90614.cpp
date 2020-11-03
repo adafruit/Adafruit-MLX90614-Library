@@ -74,7 +74,7 @@ double Adafruit_MLX90614::readEmissivity(void) {
  * @param emissivity The emissivity value to use, between 0.1 and 1.0
  */
 void Adafruit_MLX90614::writeEmissivity(double emissivity) {
-  uint16_t ereg = int(0xffff * emissivity);
+  uint16_t ereg = (uint16_t)(0xffff * emissivity);
 
   writeEmissivityReg(ereg);
 }
