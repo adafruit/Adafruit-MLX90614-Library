@@ -19,7 +19,6 @@
 #include "Adafruit_MLX90614.h"
 /**
    @brief Construct a new Adafruit_MLX90614::Adafruit_MLX90614 object
-
    @param i2caddr The I2C address to use. Defaults to 0x5A
 */
 Adafruit_MLX90614::Adafruit_MLX90614(uint8_t i2caddr) {
@@ -27,7 +26,6 @@ Adafruit_MLX90614::Adafruit_MLX90614(uint8_t i2caddr) {
 }
 /**
    @brief Begin the I2C connection
-
    @return bool  Always returns true
 */
 bool Adafruit_MLX90614::begin(void) {
@@ -44,7 +42,6 @@ bool Adafruit_MLX90614::begin(void) {
 
 /**
    @brief Read the raw value from the emissivity register
-
    @return uint16_t The unscaled emissivity value
 */
 uint16_t Adafruit_MLX90614::readEmissivityReg(void) {
@@ -53,7 +50,6 @@ uint16_t Adafruit_MLX90614::readEmissivityReg(void) {
 
 /**
    @brief Write the raw unscaled emissivity value to the emissivity register
-
    @param ereg The unscaled emissivity value
 */
 void Adafruit_MLX90614::writeEmissivityReg(uint16_t ereg) {
@@ -65,7 +61,6 @@ void Adafruit_MLX90614::writeEmissivityReg(uint16_t ereg) {
 
 /**
    @brief Read the emissivity value from the sensor's register and scale
-
    @return double The emissivity value, ranging from 0.1 - 1.0
 */
 double Adafruit_MLX90614::readEmissivity(void) {
@@ -75,7 +70,6 @@ double Adafruit_MLX90614::readEmissivity(void) {
 
 /**
    @brief Set the emissivity value
-
    @param emissivity The emissivity value to use, between 0.1 and 1.0
 */
 void Adafruit_MLX90614::writeEmissivity(double emissivity) {
@@ -84,19 +78,16 @@ void Adafruit_MLX90614::writeEmissivity(double emissivity) {
 }
 
 /**
-   @brief Get the offset of the temperature for calibrate the value of the temperature in degrees Celcius
-
-   @no return
+   @brief Get the offset of the temperature for calibrate
+   the value of the temperature in degrees Celcius
 */
 double Adafruit_MLX90614::setOffsetTemp(double T_adjust) {
   _T_adjust = T_adjust;
+  return;
 }
-
-
 
 /**
    @brief Get the current temperature of an object in degrees Kelvin
-
    @return double The temperature in degrees Kelvin
 */
 double Adafruit_MLX90614::readObjectTempK(void) {
@@ -105,7 +96,6 @@ double Adafruit_MLX90614::readObjectTempK(void) {
 
 /**
    @brief Get the current ambient temperature in degrees Kelvin
-
    @return double The temperature in degrees Kelvin
 */
 double Adafruit_MLX90614::readAmbientTempK(void) {
@@ -114,7 +104,6 @@ double Adafruit_MLX90614::readAmbientTempK(void) {
 
 /**
    @brief Get the current temperature of an object in degrees Farenheit
-
    @return double The temperature in degrees Farenheit
 */
 double Adafruit_MLX90614::readObjectTempF(void) {
@@ -123,7 +112,6 @@ double Adafruit_MLX90614::readObjectTempF(void) {
 
 /**
    @brief Get the current ambient temperature in degrees Farenheit
-
    @return double The temperature in degrees Farenheit
 */
 double Adafruit_MLX90614::readAmbientTempF(void) {
@@ -132,7 +120,6 @@ double Adafruit_MLX90614::readAmbientTempF(void) {
 
 /**
    @brief Get the current temperature of an object in degrees Celcius
-
    @return double The temperature in degrees Celcius
 */
 double Adafruit_MLX90614::readObjectTempC(void) {
@@ -141,7 +128,6 @@ double Adafruit_MLX90614::readObjectTempC(void) {
 
 /**
    @brief Get the current ambient temperature in degrees Celcius
-
    @return double The temperature in degrees Celcius
 */
 double Adafruit_MLX90614::readAmbientTempC(void) {
