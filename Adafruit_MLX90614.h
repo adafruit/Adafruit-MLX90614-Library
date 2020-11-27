@@ -47,26 +47,26 @@
    @brief Class to read from and control a MLX90614 Temp Sensor
 */
 class Adafruit_MLX90614 {
-  public:
-    Adafruit_MLX90614(uint8_t addr = MLX90614_I2CADDR);
-    bool begin();
-    double setOffsetTemp(double T_adjust);
-    double readObjectTempC(void);
-    double readAmbientTempC(void);
-    double readObjectTempF(void);
-    double readAmbientTempF(void);
-    double readObjectTempK(void);
-    double readAmbientTempK(void);
-    uint16_t readEmissivityReg(void);
-    void writeEmissivityReg(uint16_t ereg);
-    double readEmissivity(void);
-    void writeEmissivity(double emissivity);
+ public:
+  Adafruit_MLX90614(uint8_t addr = MLX90614_I2CADDR);
+  bool begin();
+  double setOffsetTemp(double T_adjust);
+  double readObjectTempC(void);
+  double readAmbientTempC(void);
+  double readObjectTempF(void);
+  double readAmbientTempF(void);
+  double readObjectTempK(void);
+  double readAmbientTempK(void);
+  uint16_t readEmissivityReg(void);
+  void writeEmissivityReg(uint16_t ereg);
+  double readEmissivity(void);
+  void writeEmissivity(double emissivity);
 
-  private:
-    double _T_adjust=0;
-    float readTemp(uint8_t reg);
-    uint16_t read16(uint8_t addr);
-    void write16(uint8_t addr, uint16_t data);
-    byte crc8(byte *addr, byte len);
-    uint8_t _addr;
+private:
+  double _T_adjust = 0;
+  float readTemp(uint8_t reg);
+  uint16_t read16(uint8_t addr);
+  void write16(uint8_t addr, uint16_t data);
+  byte crc8(byte *addr, byte len);
+  uint8_t _addr;
 };
