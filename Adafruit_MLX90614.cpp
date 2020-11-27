@@ -80,10 +80,10 @@ void Adafruit_MLX90614::writeEmissivity(double emissivity) {
 /**
    @brief Get the offset of the temperature for calibrate
    the value of the temperature in degrees Celcius
+   @param T_adjust value of temperature in degrees Celcius. Defaults to 0
 */
 double Adafruit_MLX90614::setOffsetTemp(double T_adjust) {
   _T_adjust = T_adjust;
-  return;
 }
 
 /**
