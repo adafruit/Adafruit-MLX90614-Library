@@ -80,7 +80,6 @@ double Adafruit_MLX90614::readEmissivity(void) {
 */
 void Adafruit_MLX90614::writeEmissivity(double emissivity) {
   uint16_t ereg = (uint16_t)(0xffff * emissivity);
-
   writeEmissivityReg(ereg);
 }
 
