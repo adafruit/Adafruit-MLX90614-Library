@@ -101,7 +101,7 @@ double Adafruit_MLX90614::setOffsetTemp(double T_adjust) {
    @return double The temperature in degrees Kelvin
 */
 double Adafruit_MLX90614::readObjectTempK(void) {
-  return readTemp(MLX90614_TOBJ1) + 273 + _T_adjust;;
+  return readTemp(MLX90614_TOBJ1) + 273 + _T_adjust;
 }
 
 /**
@@ -119,7 +119,7 @@ double Adafruit_MLX90614::readAmbientTempK(void) {
    @return double The temperature in degrees Farenheit
 */
 double Adafruit_MLX90614::readObjectTempF(void) {
-  return (readTemp(MLX90614_TOBJ1) * 9 / 5) + 32 + _T_adjust;;
+  return (readTemp(MLX90614_TOBJ1) * 9 / 5) + 32 + _T_adjust;
 }
 
 /**
