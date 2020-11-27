@@ -50,8 +50,7 @@ class Adafruit_MLX90614 {
   public:
     Adafruit_MLX90614(uint8_t addr = MLX90614_I2CADDR);
     bool begin();
-    double _T_adjust;
-    double setOffsetTemp(double T_adjust = 0);
+    double setOffsetTemp(double T_adjust);
     double readObjectTempC(void);
     double readAmbientTempC(void);
     double readObjectTempF(void);
@@ -64,9 +63,10 @@ class Adafruit_MLX90614 {
     void writeEmissivity(double emissivity);
 
   private:
+    double _T_adjust = 0;
     float readTemp(uint8_t reg);
     uint16_t read16(uint8_t addr);
     void write16(uint8_t addr, uint16_t data);
     byte crc8(byte *addr, byte len);
     uint8_t _addr;
-};
+}
