@@ -1,0 +1,51 @@
+Software License Agreement (BSD License)
+
+Copyright (c) 2020 Limor Fried for Adafruit Industries
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holders nor the
+names of its contributors may be used to endorse or promote products
+derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS ''AS IS'' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+Explanation of functions:
+
+.begin():		initialize the module
+.setOffsetTemp()	sets the temperature correction (used for calibration processes) it's 0 by default<<< added by Harvey>>
+.readEmissivityReg()	reserved
+.writeEmissivityReg()	reserved
+.readEmissivity()	Read the emissivity setpoint ***
+.writeEmissivity()	Write a new value for the emissivity***
+.readObjectTempK()	returns the value of the object's temperature in degrees Kelvin <<< added by Harvey>>
+.readAmbientTempK()	returns the value of the environment temperature in degrees Kelvin <<< added by Harvey>>
+.readObjectTempF()	returns the value of the object's temperature in degrees Farenheith
+.readAmbientTempF()	returns the value of the environment temperature in degrees Farenheith
+.readObjectTempC()	returns the value of the environment temperature in degrees Celsius
+.readAmbientTempC()	returns the value of the environment temperature in degrees Celsius
+
+
+*** read about emissivity here:
+https://www.thermoworks.com/emissivity-table
+https://www.flukeprocessinstruments.com/es/service-and-support/knowledge-center/infrared-technology/what-emissivity%3F
+https://www.flukeprocessinstruments.com/es/service-and-support/knowledge-center/infrared-technology/emissivity-non-metals
+https://www.flukeprocessinstruments.com/es/service-and-support/knowledge-center/infrared-technology/emissivity-metals
+https://www.sedisa.com.pe/servicios/sin-categoria/la-emisividad-y-su-efecto-en-la-medicion-de-temperaturas
+
