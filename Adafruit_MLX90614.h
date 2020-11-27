@@ -72,4 +72,5 @@ class Adafruit_MLX90614 {
     void write16(uint8_t addr, uint16_t data);
     byte crc8(byte *addr, byte len);
     uint8_t _addr;
+    double _T_adjust;
 };
