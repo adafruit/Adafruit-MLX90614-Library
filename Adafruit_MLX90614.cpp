@@ -82,16 +82,14 @@ void Adafruit_MLX90614::writeEmissivity(double emissivity) {
    the value of the temperature in degrees Celcius
    @param T_adjust value of temperature in degrees Celcius. Defaults to 0
 */
-void Adafruit_MLX90614::setOffsetTemp(double T_adjust) {
-  _T_adjust = T_adjust;
-}
+void Adafruit_MLX90614::setOffsetTemp(double T_adjust) {_T_adjust = T_adjust;}
 
 /**
    @brief Get the current temperature of an object in degrees Kelvin
    @return double The temperature in degrees Kelvin
 */
 double Adafruit_MLX90614::readObjectTempK(void) {
-  return readTemp(MLX90614_TOBJ1) + 273 + _T_adjust;
+  return (readTemp(MLX90614_TOBJ1) + 273.15) + _T_adjust;
 }
 
 /**
@@ -99,7 +97,7 @@ double Adafruit_MLX90614::readObjectTempK(void) {
    @return double The temperature in degrees Kelvin
 */
 double Adafruit_MLX90614::readAmbientTempK(void) {
-  return readTemp(MLX90614_TA) + 273;
+  return readTemp(MLX90614_TA) + 273.15;
 }
 
 /**
@@ -107,7 +105,7 @@ double Adafruit_MLX90614::readAmbientTempK(void) {
    @return double The temperature in degrees Farenheit
 */
 double Adafruit_MLX90614::readObjectTempF(void) {
-  return (readTemp(MLX90614_TOBJ1) * 9 / 5) + 32 + _T_adjust;
+  return ((readTemp(MLX90614_TOBJ1) * 9 / 5) + 32) + _T_adjust;
 }
 
 /**
@@ -136,7 +134,6 @@ double Adafruit_MLX90614::readAmbientTempC(void) {
 
 float Adafruit_MLX90614::readTemp(uint8_t reg) {
   float temp;
-
   temp = read16(reg);
   temp *= .02;
   temp -= 273.15;
