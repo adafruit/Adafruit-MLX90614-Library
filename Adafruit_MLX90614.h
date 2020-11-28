@@ -50,7 +50,7 @@ class Adafruit_MLX90614 {
  public:
   Adafruit_MLX90614(uint8_t addr = MLX90614_I2CADDR);
   bool begin();
-  double setOffsetTemp(double T_adjust);
+  void setOffsetTemp(double T_adjust);
   double readObjectTempC(void);
   double readAmbientTempC(void);
   double readObjectTempF(void);
