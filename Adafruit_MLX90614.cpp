@@ -21,9 +21,7 @@
    @brief Construct a new Adafruit_MLX90614::Adafruit_MLX90614 object
    @param i2caddr The I2C address to use. Defaults to 0x5A
 */
-Adafruit_MLX90614::Adafruit_MLX90614(uint8_t i2caddr) {
-  _addr = i2caddr;
-}
+Adafruit_MLX90614::Adafruit_MLX90614(uint8_t i2caddr) { _addr = i2caddr; }
 /**
    @brief Begin the I2C connection
    @return bool  Always returns true
@@ -80,9 +78,9 @@ void Adafruit_MLX90614::writeEmissivity(double emissivity) {
 /**
    @brief Get the offset of the temperature for calibrate
    the value of the temperature in degrees Celcius
-   @param T_adjust value of temperature in degrees Celcius. Defaults to 0
+   @param Tadjust value of temperature in degrees Celcius. Defaults to 0
 */
-void Adafruit_MLX90614::setOffsetTemp(double Tadjust) {_Tadjust = Tadjust;}
+void Adafruit_MLX90614::setOffsetTemp(double Tadjust) { _Tadjust = Tadjust; }
 
 /**
    @brief Get the current temperature of an object in degrees Kelvin
@@ -121,7 +119,7 @@ double Adafruit_MLX90614::readAmbientTempF(void) {
    @return double The temperature in degrees Celcius
 */
 double Adafruit_MLX90614::readObjectTempC(void) {
-  return readTemp(MLX90614_TOBJ1)  + _Tadjust;
+  return readTemp(MLX90614_TOBJ1) + _Tadjust;
 }
 
 /**
@@ -139,7 +137,6 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
   temp -= 273.15;
   return temp;
 }
-
 
 /*********************************************************************/
 
