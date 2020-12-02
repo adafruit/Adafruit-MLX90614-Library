@@ -14,11 +14,8 @@
 
   Written by Limor Fried/Ladyada for Adafruied in any redistribution
  ****************************************************/
-
 #if (ARDUINO >= 100)
 #include "Arduino.h"
-#else
-#include "WProgram.h"
 #endif
 #include "Wire.h"
 
@@ -30,6 +27,7 @@
 #define MLX90614_TA 0x06
 #define MLX90614_TOBJ1 0x07
 #define MLX90614_TOBJ2 0x08
+
 // EEPROM
 #define MLX90614_TOMAX 0x20
 #define MLX90614_TOMIN 0x21
@@ -43,27 +41,28 @@
 #define MLX90614_ID3 0x3E
 #define MLX90614_ID4 0x3F
 
-/**
- * @brief Class to read from and control a MLX90614 Temp Sensor
- *
- */
+/*
+   @brief Class to read from and control a MLX90614 Temp Sensor
+*/
 class Adafruit_MLX90614 {
-public:
+ public:
   Adafruit_MLX90614(uint8_t addr = MLX90614_I2CADDR);
   bool begin();
-
+  void setOffsetTemp(double Tadjust);
   double readObjectTempC(void);
   double readAmbientTempC(void);
   double readObjectTempF(void);
   double readAmbientTempF(void);
+  double readObjectTempK(void);
+  double readAmbientTempK(void);
   uint16_t readEmissivityReg(void);
   void writeEmissivityReg(uint16_t ereg);
   double readEmissivity(void);
   void writeEmissivity(double emissivity);
 
 private:
+  double _Tadjust;
   float readTemp(uint8_t reg);
-
   uint16_t read16(uint8_t addr);
   void write16(uint8_t addr, uint16_t data);
   byte crc8(byte *addr, byte len);

@@ -1,0 +1,49 @@
+###########################################
+# Syntax Coloring Map For Adafruit_MLX90614
+###########################################
+
+###########################################
+# Datatypes (KEYWORD1)
+###########################################
+
+Adafruit_MLX90614	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+begin	KEYWORD2
+readEmissivityReg	KEYWORD2
+writeEmissivityReg	KEYWORD2
+readEmissivity	KEYWORD2
+writeEmissivity	KEYWORD2
+readObjectTempK	KEYWORD2
+readAmbientTempK	KEYWORD2
+readObjectTempF	KEYWORD2
+readAmbientTempF	KEYWORD2
+readObjectTempC	KEYWORD2
+readAmbientTempC	KEYWORD2
+setOffsetTemp	KEYWORD2
+readTemp	KEYWORD2
+read16	KEYWORD2
+crc8	KEYWORD2
+write16	KEYWORD2
+###########################################
+# Constants (LITERAL1)
+###########################################
+MLX90614_I2CADDR	LITERAL1
+MLX90614_RAWIR1	LITERAL1
+MLX90614_RAWIR2	LITERAL1
+MLX90614_TA	LITERAL1
+MLX90614_TOBJ1	LITERAL1
+MLX90614_TOBJ2	LITERAL1
+MLX90614_TOMAX	LITERAL1
+MLX90614_TOMIN	LITERAL1
+MLX90614_PWMCTRL	LITERAL1
+MLX90614_TARANGE	LITERAL1
+MLX90614_EMISS	LITERAL1
+MLX90614_CONFIG	LITERAL1
+MLX90614_ADDR	LITERAL1
+MLX90614_ID1	LITERAL1
+MLX90614_ID2	LITERAL1
+MLX90614_ID3	LITERAL1
+MLX90614_ID4	LITERAL1
