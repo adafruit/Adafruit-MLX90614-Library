@@ -17,27 +17,17 @@
  ****************************************************/
 
 #include "Adafruit_MLX90614.h"
-/**
- * @brief Construct a new Adafruit_MLX90614::Adafruit_MLX90614 object
- *
- * @param i2caddr The I2C address to use. Defaults to 0x5A
- */
-Adafruit_MLX90614::Adafruit_MLX90614(uint8_t i2caddr) { _addr = i2caddr; }
+
 /**
  * @brief Begin the I2C connection
- *
- * @return bool  Always returns true
+ * @param addr I2C address for the device.
+ * @param wire Pointer to Wire instance
+ * @return True if the device was successfully initialized, otherwise false.
  */
-bool Adafruit_MLX90614::begin(void) {
-  Wire.begin();
-
-  /*
-  for (uint8_t i=0; i<0x20; i++) {
-    Serial.print(i); Serial.print(" = ");
-    Serial.println(read16(i), HEX);
-  }
-  */
-  return true;
+bool Adafruit_MLX90614::begin(uint8_t addr, TwoWire *wire) {
+  _addr = addr; // needed for CRC
+  i2c_dev = new Adafruit_I2CDevice(addr, wire);
+  return i2c_dev->begin();
 }
 
 /**
@@ -126,19 +116,12 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
 /*********************************************************************/
 
 uint16_t Adafruit_MLX90614::read16(uint8_t a) {
-  uint16_t ret;
-
-  Wire.beginTransmission(_addr); // start transmission to device
-  Wire.write(a);                 // sends register address to read from
-  Wire.endTransmission(false);   // end transmission
-
-  Wire.requestFrom(_addr, (size_t)3); // send data n-bytes read
-  ret = Wire.read();                  // receive DATA
-  ret |= Wire.read() << 8;            // receive DATA
-
-  uint8_t pec = Wire.read();
-
-  return ret;
+  uint8_t buffer[3];
+  buffer[0] = a;
+  // read two bytes of data + pec
+  i2c_dev->write_then_read(buffer, 1, buffer, 3);
+  // return data, ignore pec
+  return uint16_t(buffer[0]) | (uint16_t(buffer[1]) << 8);
 }
 
 byte Adafruit_MLX90614::crc8(byte *addr, byte len)
@@ -160,19 +143,19 @@ byte Adafruit_MLX90614::crc8(byte *addr, byte len)
 }
 
 void Adafruit_MLX90614::write16(uint8_t a, uint16_t v) {
-  uint8_t pec;
-  uint8_t pecbuf[4];
+  uint8_t buffer[4];
 
-  pecbuf[0] = _addr << 1;
-  pecbuf[1] = a;
-  pecbuf[2] = v & 0xff;
-  pecbuf[3] = v >> 8;
-  pec = crc8(pecbuf, sizeof pecbuf);
+  buffer[0] = _addr << 1;
+  buffer[1] = a;
+  buffer[2] = v & 0xff;
+  buffer[3] = v >> 8;
 
-  Wire.beginTransmission(_addr); // start transmission to device
-  Wire.write(a);                 // sends register address to write
-  Wire.write(v & 0xff);          // lo
-  Wire.write(v >> 8);            // hi
-  Wire.write(pec);               // pec
-  Wire.endTransmission(true);    // end transmission
+  uint8_t pec = crc8(buffer, 4);
+
+  buffer[0] = buffer[1];
+  buffer[1] = buffer[2];
+  buffer[2] = buffer[3];
+  buffer[3] = pec;
+
+  i2c_dev->write(buffer, 4);
 }
