@@ -58,7 +58,6 @@ public:
 
 private:
   Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
-  uint8_t buffer[4];
   float readTemp(uint8_t reg);
 
   uint16_t read16(uint8_t addr);

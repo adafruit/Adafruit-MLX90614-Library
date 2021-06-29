@@ -116,11 +116,12 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
 /*********************************************************************/
 
 uint16_t Adafruit_MLX90614::read16(uint8_t a) {
+  uint8_t buffer[3];
   buffer[0] = a;
   // read two bytes of data + pec
   i2c_dev->write_then_read(buffer, 1, buffer, 3);
   // return data, ignore pec
-  return uint16_t(buffer[0] | (buffer[1] << 8));
+  return uint16_t(buffer[0]) | (uint16_t(buffer[1]) << 8);
 }
 
 byte Adafruit_MLX90614::crc8(byte *addr, byte len)
@@ -142,6 +143,8 @@ byte Adafruit_MLX90614::crc8(byte *addr, byte len)
 }
 
 void Adafruit_MLX90614::write16(uint8_t a, uint16_t v) {
+  uint8_t buffer[4];
+
   buffer[0] = _addr << 1;
   buffer[1] = a;
   buffer[2] = v & 0xff;
