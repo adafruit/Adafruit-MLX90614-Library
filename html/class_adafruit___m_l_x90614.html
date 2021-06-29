@@ -73,12 +73,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a388e85cb0d0fb5ace28fe8fdbca8032c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___m_l_x90614.html#a388e85cb0d0fb5ace28fe8fdbca8032c">Adafruit_MLX90614</a> (uint8_t addr=MLX90614_I2CADDR)</td></tr>
-<tr class="memdesc:a388e85cb0d0fb5ace28fe8fdbca8032c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_adafruit___m_l_x90614.html#a388e85cb0d0fb5ace28fe8fdbca8032c" title="Construct a new Adafruit_MLX90614::Adafruit_MLX90614 object. ">Adafruit_MLX90614::Adafruit_MLX90614</a> object.  <a href="#a388e85cb0d0fb5ace28fe8fdbca8032c">More...</a><br /></td></tr>
-<tr class="separator:a388e85cb0d0fb5ace28fe8fdbca8032c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7c6f3b61beeff03ab6b11a34ecbf7f5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___m_l_x90614.html#aa7c6f3b61beeff03ab6b11a34ecbf7f5">begin</a> ()</td></tr>
-<tr class="memdesc:aa7c6f3b61beeff03ab6b11a34ecbf7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin the I2C connection.  <a href="#aa7c6f3b61beeff03ab6b11a34ecbf7f5">More...</a><br /></td></tr>
-<tr class="separator:aa7c6f3b61beeff03ab6b11a34ecbf7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabc24d819a4c2225b626ed9268d1b556"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___m_l_x90614.html#aabc24d819a4c2225b626ed9268d1b556">begin</a> (uint8_t addr=MLX90614_I2CADDR, TwoWire *wire=&amp;Wire)</td></tr>
+<tr class="memdesc:aabc24d819a4c2225b626ed9268d1b556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin the I2C connection.  <a href="#aabc24d819a4c2225b626ed9268d1b556">More...</a><br /></td></tr>
+<tr class="separator:aabc24d819a4c2225b626ed9268d1b556"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc052bc94f74a74da6a811aa031fe567"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_adafruit___m_l_x90614.html#afc052bc94f74a74da6a811aa031fe567">readObjectTempC</a> (void)</td></tr>
 <tr class="memdesc:afc052bc94f74a74da6a811aa031fe567"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current temperature of an object in degrees Celcius.  <a href="#afc052bc94f74a74da6a811aa031fe567">More...</a><br /></td></tr>
 <tr class="separator:afc052bc94f74a74da6a811aa031fe567"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,36 +103,9 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to read from and control a MLX90614 Temp Sensor. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a388e85cb0d0fb5ace28fe8fdbca8032c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a388e85cb0d0fb5ace28fe8fdbca8032c">&#9670;&nbsp;</a></span>Adafruit_MLX90614()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Adafruit_MLX90614::Adafruit_MLX90614 </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>i2caddr</em> = <code>MLX90614_I2CADDR</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Construct a new <a class="el" href="class_adafruit___m_l_x90614.html#a388e85cb0d0fb5ace28fe8fdbca8032c" title="Construct a new Adafruit_MLX90614::Adafruit_MLX90614 object. ">Adafruit_MLX90614::Adafruit_MLX90614</a> object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i2caddr</td><td>The I2C address to use. Defaults to 0x5A </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa7c6f3b61beeff03ab6b11a34ecbf7f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7c6f3b61beeff03ab6b11a34ecbf7f5">&#9670;&nbsp;</a></span>begin()</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aabc24d819a4c2225b626ed9268d1b556"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabc24d819a4c2225b626ed9268d1b556">&#9670;&nbsp;</a></span>begin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,15 +113,32 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">bool Adafruit_MLX90614::begin </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>addr</em> = <code>MLX90614_I2CADDR</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">TwoWire *&#160;</td>
+          <td class="paramname"><em>wire</em> = <code>&amp;Wire</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Begin the I2C connection. </p>
-<dl class="section return"><dt>Returns</dt><dd>bool Always returns true </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>I2C address for the device. </td></tr>
+    <tr><td class="paramname">wire</td><td>Pointer to Wire instance </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the device was successfully initialized, otherwise false. </dd></dl>
 
 </div>
 </div>

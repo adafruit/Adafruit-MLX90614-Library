@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['adafruit_5fmlx90614',['Adafruit_MLX90614',['../class_adafruit___m_l_x90614.html#a388e85cb0d0fb5ace28fe8fdbca8032c',1,'Adafruit_MLX90614']]]
+  ['begin',['begin',['../class_adafruit___m_l_x90614.html#aabc24d819a4c2225b626ed9268d1b556',1,'Adafruit_MLX90614']]]
 ];
