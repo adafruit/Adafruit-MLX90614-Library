@@ -56,6 +56,7 @@ void Adafruit_MLX90614::writeEmissivityReg(uint16_t ereg) {
  */
 double Adafruit_MLX90614::readEmissivity(void) {
   uint16_t ereg = read16(MLX90614_EMISS);
+  if(ereg == 0) return NAN;
   return ((double)ereg) / 65535.0;
 }
 /**
@@ -108,6 +109,7 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
   float temp;
 
   temp = read16(reg);
+  if(temp == 0) return NAN;
   temp *= .02;
   temp -= 273.15;
   return temp;
@@ -119,7 +121,8 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   uint8_t buffer[3];
   buffer[0] = a;
   // read two bytes of data + pec
-  i2c_dev->write_then_read(buffer, 1, buffer, 3);
+  bool status = i2c_dev->write_then_read(buffer, 1, buffer, 3);
+  if(!status) return 0;
   // return data, ignore pec
   return uint16_t(buffer[0]) | (uint16_t(buffer[1]) << 8);
 }
