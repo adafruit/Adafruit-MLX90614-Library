@@ -159,7 +159,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the current temperature of an object in degrees Celcius. </p>
-<dl class="section return"><dt>Returns</dt><dd>double The temperature in degrees Celcius </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>double The temperature in degrees Celcius or NAN if reading failed </dd></dl>
 
 </div>
 </div>
@@ -180,7 +180,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the current ambient temperature in degrees Celcius. </p>
-<dl class="section return"><dt>Returns</dt><dd>double The temperature in degrees Celcius </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>double The temperature in degrees Celcius or NAN if reading failed </dd></dl>
 
 </div>
 </div>
@@ -201,7 +201,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the current temperature of an object in degrees Farenheit. </p>
-<dl class="section return"><dt>Returns</dt><dd>double The temperature in degrees Farenheit </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>double The temperature in degrees Farenheit or NAN if reading failed </dd></dl>
 
 </div>
 </div>
@@ -222,7 +222,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the current ambient temperature in degrees Farenheit. </p>
-<dl class="section return"><dt>Returns</dt><dd>double The temperature in degrees Farenheit </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>double The temperature in degrees Farenheit or NAN if reading failed </dd></dl>
 
 </div>
 </div>
@@ -243,7 +243,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read the raw value from the emissivity register. </p>
-<dl class="section return"><dt>Returns</dt><dd>uint16_t The unscaled emissivity value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t The unscaled emissivity value or '0' if reading failed </dd></dl>
 
 </div>
 </div>
@@ -290,7 +290,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read the emissivity value from the sensor's register and scale. </p>
-<dl class="section return"><dt>Returns</dt><dd>double The emissivity value, ranging from 0.1 - 1.0 </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>double The emissivity value, ranging from 0.1 - 1.0 or NAN if reading failed </dd></dl>
 
 </div>
 </div>
