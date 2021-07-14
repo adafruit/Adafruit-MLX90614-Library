@@ -52,7 +52,8 @@ void Adafruit_MLX90614::writeEmissivityReg(uint16_t ereg) {
 /**
  * @brief Read the emissivity value from the sensor's register and scale
  *
- * @return double The emissivity value, ranging from 0.1 - 1.0 or NAN if reading failed
+ * @return double The emissivity value, ranging from 0.1 - 1.0 or NAN if reading
+ * failed
  */
 double Adafruit_MLX90614::readEmissivity(void) {
   uint16_t ereg = read16(MLX90614_EMISS);
