@@ -33,7 +33,7 @@ bool Adafruit_MLX90614::begin(uint8_t addr, TwoWire *wire) {
 /**
  * @brief Read the raw value from the emissivity register
  *
- * @return uint16_t The unscaled emissivity value
+ * @return uint16_t The unscaled emissivity value or '0' if reading failed
  */
 uint16_t Adafruit_MLX90614::readEmissivityReg(void) {
   return read16(MLX90614_EMISS);
@@ -52,10 +52,13 @@ void Adafruit_MLX90614::writeEmissivityReg(uint16_t ereg) {
 /**
  * @brief Read the emissivity value from the sensor's register and scale
  *
- * @return double The emissivity value, ranging from 0.1 - 1.0
+ * @return double The emissivity value, ranging from 0.1 - 1.0 or NAN if reading
+ * failed
  */
 double Adafruit_MLX90614::readEmissivity(void) {
   uint16_t ereg = read16(MLX90614_EMISS);
+  if (ereg == 0)
+    return NAN;
   return ((double)ereg) / 65535.0;
 }
 /**
@@ -72,7 +75,7 @@ void Adafruit_MLX90614::writeEmissivity(double emissivity) {
 /**
  * @brief Get the current temperature of an object in degrees Farenheit
  *
- * @return double The temperature in degrees Farenheit
+ * @return double The temperature in degrees Farenheit or NAN if reading failed
  */
 double Adafruit_MLX90614::readObjectTempF(void) {
   return (readTemp(MLX90614_TOBJ1) * 9 / 5) + 32;
@@ -80,7 +83,7 @@ double Adafruit_MLX90614::readObjectTempF(void) {
 /**
  * @brief Get the current ambient temperature in degrees Farenheit
  *
- * @return double The temperature in degrees Farenheit
+ * @return double The temperature in degrees Farenheit or NAN if reading failed
  */
 double Adafruit_MLX90614::readAmbientTempF(void) {
   return (readTemp(MLX90614_TA) * 9 / 5) + 32;
@@ -89,7 +92,7 @@ double Adafruit_MLX90614::readAmbientTempF(void) {
 /**
  * @brief Get the current temperature of an object in degrees Celcius
  *
- * @return double The temperature in degrees Celcius
+ * @return double The temperature in degrees Celcius or NAN if reading failed
  */
 double Adafruit_MLX90614::readObjectTempC(void) {
   return readTemp(MLX90614_TOBJ1);
@@ -98,7 +101,7 @@ double Adafruit_MLX90614::readObjectTempC(void) {
 /**
  * @brief Get the current ambient temperature in degrees Celcius
  *
- * @return double The temperature in degrees Celcius
+ * @return double The temperature in degrees Celcius or NAN if reading failed
  */
 double Adafruit_MLX90614::readAmbientTempC(void) {
   return readTemp(MLX90614_TA);
@@ -108,6 +111,8 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
   float temp;
 
   temp = read16(reg);
+  if (temp == 0)
+    return NAN;
   temp *= .02;
   temp -= 273.15;
   return temp;
@@ -119,7 +124,9 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   uint8_t buffer[3];
   buffer[0] = a;
   // read two bytes of data + pec
-  i2c_dev->write_then_read(buffer, 1, buffer, 3);
+  bool status = i2c_dev->write_then_read(buffer, 1, buffer, 3);
+  if (!status)
+    return 0;
   // return data, ignore pec
   return uint16_t(buffer[0]) | (uint16_t(buffer[1]) << 8);
 }
