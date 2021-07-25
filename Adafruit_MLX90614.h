@@ -12,7 +12,7 @@
   please support Adafruit and open-source hardware by purchasing
   products from Adafruit!
 
-  Written by Limor Fried/Ladyada for Adafruied in any redistribution
+  Written by Limor Fried/Ladyada for Adafruit in any redistribution
  ****************************************************/
 
 #include <Adafruit_I2CDevice.h>
