@@ -22,6 +22,7 @@ Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
 void setup() {
   Serial.begin(9600);
+  while (!Serial);
 
   Serial.println("Adafruit MLX90614 test");
 
@@ -29,6 +30,9 @@ void setup() {
     Serial.println("Error connecting to MLX sensor. Check wiring.");
     while (1);
   };
+
+  Serial.print("Emissivity = "); Serial.println(mlx.readEmissivity());
+  Serial.println("================================================");
 }
 
 void loop() {
