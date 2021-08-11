@@ -73,6 +73,150 @@ void Adafruit_MLX90614::writeEmissivity(double emissivity) {
 }
 
 /**
+ * @brief Read the raw value from the Config Register1
+ *
+ * @return uint16_t The Config Register1 value or '0' if reading failed
+ */
+uint16_t Adafruit_MLX90614::readConfigReg(void) {
+  return read16(MLX90614_CONFIG);
+}
+/**
+ * @brief Write the raw value to the Config Register1
+ *
+ * @param creg The Config Register1 value
+ */
+void Adafruit_MLX90614::writeConfigReg(uint16_t creg) {
+  write16(MLX90614_CONFIG, creg);
+  delay(10);
+}
+
+/**
+ * @brief Read the FIR filter value from the Config Register1
+ *
+ * @return uint16_t The FIR filter value or NOISE_FILTER_ERROR on error occur
+ */
+Adafruit_MLX90614::noise_filter_mode Adafruit_MLX90614::readNoiseFilterMode(void) {
+  uint16_t reg = readConfigReg();
+  if (reg == 0) {
+    return NOISE_FILTER_ERROR;
+  }
+  return noise_filter_mode(reg & 0x0700);
+}
+/**
+ * @brief Set the FIR filter value to the Config Register1
+ *
+ * @param mode The FIR filter value to use
+ */
+void Adafruit_MLX90614::writeNoiseFilterMode(noise_filter_mode mode) {
+  if (mode < NOISE_LIMIT_128 || mode > NOISE_LIMIT_1024) {
+    return;
+  }
+
+  uint16_t reg = readConfigReg();
+  if (reg == 0 || (reg & 0x0700) == mode /* save EEPROM erase-write cycles */) {
+    return;
+  }
+
+  writeConfigReg(0); // erase
+  writeConfigReg((reg & ~0x0700) | mode);
+}
+
+/**
+ * @brief Read the IIR filter value from the Config Register1
+ *
+ * @return uint16_t The IIR filter value or SPIKE_FILTER_ERROR on error occur
+ */
+Adafruit_MLX90614::spike_filter_mode Adafruit_MLX90614::readSpikeFilterMode(void) {
+  uint16_t reg = readConfigReg();
+  if (reg == 0) {
+    return SPIKE_FILTER_ERROR;
+  }
+  return spike_filter_mode(reg & 0x0007);
+}
+/**
+ * @brief Set the IIR filter value
+ *
+ * @param mode The IIR filter value to use
+ */
+void Adafruit_MLX90614::writeSpikeFilterMode(spike_filter_mode mode) {
+  if (mode > 0x0007) {
+    return;
+  }
+
+  uint16_t reg = readConfigReg();
+  if (reg == 0 || (reg & 0x0007) == mode /* save EEPROM erase-write cycles */) {
+    return;
+  }
+
+  writeConfigReg(0); // erase
+  writeConfigReg((reg & ~0x0007) | mode);
+}
+
+/**
+ * @brief Set FIR/IIR filter values
+ *
+ * @param noise The FIR filter value to use
+ * @param spike The IIR filter value to use
+ */
+void Adafruit_MLX90614::writeFilterMode(noise_filter_mode noise, spike_filter_mode spike) {
+  if (noise < NOISE_LIMIT_128 || noise > NOISE_LIMIT_1024 || spike > 0x0007) {
+    return;
+  }
+
+  uint16_t reg = readConfigReg();
+  if (reg == 0 || ((reg & 0x0700) == noise && (reg & 0x0007) == spike) /* save EEPROM erase-write cycles */) {
+    return;
+  }
+
+  writeConfigReg(0); // erase
+  writeConfigReg(((reg & ~0x0007) & ~0x0700) | noise | spike);
+}
+
+/**
+ * @brief Return settling time in ms based on FIR/IIR filter values
+ * See Application Note Understanding MLX90614 on-chip digital signal filters
+ *
+ * @return uint16_t The settling time in ms or 0 on error occur
+ */
+unsigned long Adafruit_MLX90614::settlingTime(void) {
+  uint16_t reg = readConfigReg();
+  if (reg == 0) {
+    return 0;
+  }
+
+  double fir;
+  switch (reg & 0x0700) {
+    case NOISE_LIMIT_128:  fir = 5.184;  break;
+    case NOISE_LIMIT_256:  fir = 9.280;  break;
+    case NOISE_LIMIT_512:  fir = 17.472; break;
+    case NOISE_LIMIT_1024: fir = 33.856; break;
+    default:
+      return 0;
+  }
+
+  double iir;
+  switch (reg & 0x0007) {
+    case SPIKE_LIMIT_13:
+    case SPIKE_LIMIT_17:
+    case SPIKE_LIMIT_25:
+    case SPIKE_LIMIT_50:
+      iir = 10;
+      break;
+    case SPIKE_LIMIT_57:  iir = 9; break;
+    case SPIKE_LIMIT_67:  iir = 8; break;
+    case SPIKE_LIMIT_80:  iir = 4; break;
+    case SPIKE_LIMIT_100: iir = 1; break;
+    default:
+      return 0;
+  }
+
+  uint16_t dual = (reg & 0x0040) >> 6;
+
+  return 9.719 + (iir * (fir + 5.26)) + (iir * (fir + 12.542)) + (iir * dual * (fir + 12.542));
+}
+
+
+/**
  * @brief Get the current temperature of an object in degrees Farenheit
  *
  * @return double The temperature in degrees Farenheit or NAN if reading failed
