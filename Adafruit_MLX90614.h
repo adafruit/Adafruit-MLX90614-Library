@@ -45,6 +45,7 @@
  */
 class Adafruit_MLX90614 {
 public:
+  ~Adafruit_MLX90614();
   bool begin(uint8_t addr = MLX90614_I2CADDR, TwoWire *wire = &Wire);
 
   double readObjectTempC(void);
