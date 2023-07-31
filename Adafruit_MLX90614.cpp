@@ -132,17 +132,20 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   buffer[0] = a;
   // read two bytes of data + pec
   bool status = i2c_dev->write_then_read(buffer, 1, buffer, 3);
-  //check crc.
-  uint8_t crcb[5];
-  crcb[0] = _addr << 1;       //write
-  crcb[1] = a;                //register
-  crcb[2] = (_addr << 1) | 1; //read
-  crcb[3] = buffer[0];        //value L
-  crcb[4] = buffer[1];        //value H
-  uint8_t pec = crc8(crcb, 5);
-  if (!status || pec!=buffer[2]) //check for status and crc.
+  if (!status)
     return 0;
-  // return data, ignore pec
+  
+  // check crc.
+  uint8_t crcb[5];
+  crcb[0] = _addr << 1;
+  crcb[1] = a;
+  crcb[2] = (_addr << 1) | 1;
+  crcb[3] = buffer[0];
+  crcb[4] = buffer[1];
+  uint8_t pec = crc8(crcb, 5);
+  if (pec != buffer[2])
+    return 0;
+  // return data, pec is ok!
   return uint16_t(buffer[0]) | (uint16_t(buffer[1]) << 8);
 }
 
