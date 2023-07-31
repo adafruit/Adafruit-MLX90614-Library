@@ -141,7 +141,7 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   buffer[0] = _addr << 1;
   buffer[1] = a;
   buffer[2] = (_addr << 1) | 1;
-  uint8_t pec = crc8(crcb, 5);
+  uint8_t pec = crc8(buffer, 5);
   if (pec != buffer[5])
     return 0;
   // return data, pec is ok!
