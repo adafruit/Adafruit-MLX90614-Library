@@ -144,14 +144,13 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   uint8_t pec = crc8(buffer, 5);
   if (pec != buffer[5])
     return 0; 
-  // retur data, pec is ok
+  // return data, pec is ok
   return uint16_t(buffer[3]) | (uint16_t(buffer[4]) << 8);
 }
 
-byte Adafruit_MLX90614::crc8(byte *addr, byte len)
-// The PEC calculation includes all bits except the START, REPEATED START, STOP,
-// ACK, and NACK bits. The PEC is a CRC-8 with polynomial X8+X2+X1+1.
-{
+byte Adafruit_MLX90614::crc8(byte *addr, byte len) {
+  // The PEC calculation includes all bits except the START, REPEATED START, STOP,
+  // ACK, and NACK bits. The PEC is a CRC-8 with polynomial X8+X2+X1+1.
   byte crc = 0;
   while (len--) {
     byte inbyte = *addr++;
