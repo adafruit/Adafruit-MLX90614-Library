@@ -125,6 +125,14 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
   return temp;
 }
 
+int16_t Adafruit_MLX90614::readRawIR1(void) {
+  return readSignMag16(MLX90614_RAWIR1);
+}
+
+int16_t Adafruit_MLX90614::readRawIR2(void) {
+  return readSignMag16(MLX90614_RAWIR2);
+}
+
 /*********************************************************************/
 
 uint16_t Adafruit_MLX90614::read16(uint8_t a) {
