@@ -125,10 +125,20 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
   return temp;
 }
 
+/**
+ * @brief Read the raw value from the IR1 register
+ *
+ * @return int16_t The unscaled IR1 value or 'NAN' if reading failed
+ */
 int16_t Adafruit_MLX90614::readRawIR1(void) {
   return readSignMag16(MLX90614_RAWIR1);
 }
 
+/**
+ * @brief Read the raw value from the IR2 register
+ *
+ * @return int16_t The unscaled IR2 value or 'NAN' if reading failed
+ */
 int16_t Adafruit_MLX90614::readRawIR2(void) {
   return readSignMag16(MLX90614_RAWIR2);
 }
@@ -152,7 +162,7 @@ int16_t Adafruit_MLX90614::readSignMag16(uint8_t a) {
   // read two bytes of data + pec
   bool status = i2c_dev->write_then_read(buffer, 1, buffer, 3);
   if (!status)
-    return 0;
+    return NAN;
   // return data, ignore pec
 
   uint16_t magnitude = ((uint16_t)buffer[0] << 8) | buffer[1];
