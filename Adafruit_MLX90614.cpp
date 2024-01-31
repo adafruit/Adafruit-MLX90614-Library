@@ -138,6 +138,29 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
   return uint16_t(buffer[0]) | (uint16_t(buffer[1]) << 8);
 }
 
+int16_t Adafruit_MLX90614::readSignMag16(uint8_t a) {
+  uint8_t buffer[3];
+  buffer[0] = a;
+  // read two bytes of data + pec
+  bool status = i2c_dev->write_then_read(buffer, 1, buffer, 3);
+  if (!status)
+    return 0;
+  // return data, ignore pec
+
+  uint16_t magnitude = ((uint16_t)buffer[0] << 8) | buffer[1];
+  // Clear the sign bit
+  magnitude &= ~(1 << 15);
+
+  // Check if the sign bit was set
+  if (buffer[0] & 0x80) {
+    // Negative value
+    return -magnitude;
+  } else {
+    // Positive value
+    return magnitude;
+  }
+}
+
 byte Adafruit_MLX90614::crc8(byte *addr, byte len)
 // The PEC calculation includes all bits except the START, REPEATED START, STOP,
 // ACK, and NACK bits. The PEC is a CRC-8 with polynomial X8+X2+X1+1.

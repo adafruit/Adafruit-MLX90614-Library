@@ -56,6 +56,7 @@ public:
   void writeEmissivityReg(uint16_t ereg);
   double readEmissivity(void);
   void writeEmissivity(double emissivity);
+  int16_t readSignMag16(uint8_t addr);
 
 private:
   Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
