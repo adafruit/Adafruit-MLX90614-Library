@@ -157,20 +157,13 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
 }
 
 int16_t Adafruit_MLX90614::readSignMag16(uint8_t a) {
-  uint8_t buffer[3];
-  buffer[0] = a;
-  // read two bytes of data + pec
-  bool status = i2c_dev->write_then_read(buffer, 1, buffer, 3);
-  if (!status)
-    return 0;
-  // return data, ignore pec
-
-  uint16_t magnitude = ((uint16_t)buffer[0] << 8) | buffer[1];
+  uint16_t magnitude = read16(a);
+  // Check for negative sign bit
+  bool negative = magnitude & (1 << 15);
   // Clear the sign bit
   magnitude &= ~(1 << 15);
 
-  // Check if the sign bit was set
-  if (buffer[0] & 0x80) {
+  if (negative) {
     // Negative value
     return -magnitude;
   } else {
