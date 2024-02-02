@@ -53,6 +53,8 @@ public:
   double readObjectTempF(void);
   double readAmbientTempF(void);
   uint16_t readEmissivityReg(void);
+  int16_t readRawIR1(void);
+  int16_t readRawIR2(void);
   void writeEmissivityReg(uint16_t ereg);
   double readEmissivity(void);
   void writeEmissivity(double emissivity);
@@ -60,7 +62,7 @@ public:
 private:
   Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
   float readTemp(uint8_t reg);
-
+  int16_t readSignMag16(uint8_t addr);
   uint16_t read16(uint8_t addr);
   void write16(uint8_t addr, uint16_t data);
   byte crc8(byte *addr, byte len);

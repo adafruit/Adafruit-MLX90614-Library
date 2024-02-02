@@ -125,6 +125,24 @@ float Adafruit_MLX90614::readTemp(uint8_t reg) {
   return temp;
 }
 
+/**
+ * @brief Read the raw value from the IR1 register
+ *
+ * @return int16_t The unscaled IR1 value or '0' if reading failed
+ */
+int16_t Adafruit_MLX90614::readRawIR1(void) {
+  return readSignMag16(MLX90614_RAWIR1);
+}
+
+/**
+ * @brief Read the raw value from the IR2 register
+ *
+ * @return int16_t The unscaled IR2 value or '0' if reading failed
+ */
+int16_t Adafruit_MLX90614::readRawIR2(void) {
+  return readSignMag16(MLX90614_RAWIR2);
+}
+
 /*********************************************************************/
 
 uint16_t Adafruit_MLX90614::read16(uint8_t a) {
@@ -136,6 +154,22 @@ uint16_t Adafruit_MLX90614::read16(uint8_t a) {
     return 0;
   // return data, ignore pec
   return uint16_t(buffer[0]) | (uint16_t(buffer[1]) << 8);
+}
+
+int16_t Adafruit_MLX90614::readSignMag16(uint8_t a) {
+  uint16_t magnitude = read16(a);
+  // Check for negative sign bit
+  bool negative = magnitude & (1 << 15);
+  // Clear the sign bit
+  magnitude &= ~(1 << 15);
+
+  if (negative) {
+    // Negative value
+    return -magnitude;
+  } else {
+    // Positive value
+    return magnitude;
+  }
 }
 
 byte Adafruit_MLX90614::crc8(byte *addr, byte len)
