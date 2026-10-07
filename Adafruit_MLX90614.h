@@ -1,3 +1,6 @@
+#ifndef ADAFRUIT_MLX90614
+#define ADAFRUIT_MLX90614
+
 /***************************************************
   This is a library for the MLX90614 Temp Sensor
 
@@ -66,3 +69,5 @@ class Adafruit_MLX90614 {
   byte crc8(byte* addr, byte len);
   uint8_t _addr;
 };
+
+#endif
