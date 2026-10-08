@@ -1,5 +1,5 @@
-#ifndef ADAFRUIT_MLX90614
-#define ADAFRUIT_MLX90614
+#ifndef __ADAFRUIT_MLX90614_H__
+#define __ADAFRUIT_MLX90614_H__
 
 /***************************************************
   This is a library for the MLX90614 Temp Sensor
